@@ -59,7 +59,7 @@ class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1D6F62),
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         title: const Text(
           'ANNOUNCEMENTS',
@@ -144,17 +144,15 @@ class _HoverAnnouncementCardState extends State<_HoverAnnouncementCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         decoration: BoxDecoration(
-          color: _isHovered ? const Color(0xFFE3F3EF) : Colors.white,
+          color: _isHovered ? const Color(0xFFFFF3CD) : Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: _isHovered
-                ? const Color(0xFF1D6F62)
-                : const Color(0xFFE0E7E4),
+            color: _isHovered ? Colors.black : const Color(0xFFE0E7E4),
           ),
           boxShadow: [
             if (_isHovered)
               BoxShadow(
-                color: const Color(0xFF1D6F62).withValues(alpha: 0.18),
+                color: Colors.black.withValues(alpha: 0.14),
                 blurRadius: 14,
                 offset: const Offset(0, 6),
               ),
