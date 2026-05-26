@@ -94,8 +94,8 @@ class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
                       return _HoverAnnouncementCard(
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: const Color(0xFFE3F3EF),
-                            foregroundColor: const Color(0xFF1D6F62),
+                            backgroundColor: const Color(0xFFE5E7EB),
+                            foregroundColor: const Color(0xFF374151),
                             child: Icon(
                               item.isPinned ? Icons.push_pin : Icons.campaign,
                             ),
@@ -144,10 +144,12 @@ class _HoverAnnouncementCardState extends State<_HoverAnnouncementCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         decoration: BoxDecoration(
-          color: _isHovered ? const Color(0xFFFFF3CD) : Colors.white,
+          color: _isHovered ? const Color(0xFFD1D5DB) : const Color(0xFFF3F4F6),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: _isHovered ? Colors.black : const Color(0xFFE0E7E4),
+            color: _isHovered
+                ? const Color(0xFF4B5563)
+                : const Color(0xFFD1D5DB),
           ),
           boxShadow: [
             if (_isHovered)
