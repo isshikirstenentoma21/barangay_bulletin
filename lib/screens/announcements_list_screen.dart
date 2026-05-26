@@ -11,7 +11,8 @@ class AnnouncementsListScreen extends StatefulWidget {
   const AnnouncementsListScreen({super.key});
 
   @override
-  State<AnnouncementsListScreen> createState() => _AnnouncementsListScreenState();
+  State<AnnouncementsListScreen> createState() =>
+      _AnnouncementsListScreenState();
 }
 
 class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
@@ -45,7 +46,8 @@ class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
   Future<void> _openDetail(Announcement announcement) async {
     await Navigator.of(context).push<bool>(
       MaterialPageRoute(
-        builder: (_) => AnnouncementDetailScreen(announcementId: announcement.id),
+        builder: (_) =>
+            AnnouncementDetailScreen(announcementId: announcement.id),
       ),
     );
     setState(() {});
@@ -57,7 +59,12 @@ class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Announcements'),
+        backgroundColor: const Color(0xFF1D6F62),
+        foregroundColor: Colors.white,
+        title: const Text(
+          'ANNOUNCEMENTS',
+          style: TextStyle(fontWeight: FontWeight.w800, letterSpacing: 0.8),
+        ),
         actions: [
           IconButton(
             tooltip: _pinnedOnly ? 'Show all' : 'Pinned only',
@@ -84,9 +91,11 @@ class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
                     padding: const EdgeInsets.all(16),
                     itemBuilder: (context, index) {
                       final item = items[index];
-                      return Card(
+                      return _HoverAnnouncementCard(
                         child: ListTile(
                           leading: CircleAvatar(
+                            backgroundColor: const Color(0xFFE3F3EF),
+                            foregroundColor: const Color(0xFF1D6F62),
                             child: Icon(
                               item.isPinned ? Icons.push_pin : Icons.campaign,
                             ),
@@ -110,6 +119,48 @@ class _AnnouncementsListScreenState extends State<AnnouncementsListScreen> {
         onPressed: _createAnnouncement,
         icon: const Icon(Icons.add),
         label: const Text('Post'),
+      ),
+    );
+  }
+}
+
+class _HoverAnnouncementCard extends StatefulWidget {
+  const _HoverAnnouncementCard({required this.child});
+
+  final Widget child;
+
+  @override
+  State<_HoverAnnouncementCard> createState() => _HoverAnnouncementCardState();
+}
+
+class _HoverAnnouncementCardState extends State<_HoverAnnouncementCard> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        decoration: BoxDecoration(
+          color: _isHovered ? const Color(0xFFE3F3EF) : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: _isHovered
+                ? const Color(0xFF1D6F62)
+                : const Color(0xFFE0E7E4),
+          ),
+          boxShadow: [
+            if (_isHovered)
+              BoxShadow(
+                color: const Color(0xFF1D6F62).withValues(alpha: 0.18),
+                blurRadius: 14,
+                offset: const Offset(0, 6),
+              ),
+          ],
+        ),
+        child: widget.child,
       ),
     );
   }
