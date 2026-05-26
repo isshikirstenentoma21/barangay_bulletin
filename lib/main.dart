@@ -23,7 +23,7 @@ class BarangayBulletinApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const seed = Color(0xFF1D6F62);
+    const seed = Color(0xFF4B5563);
 
     return MaterialApp(
       title: 'Barangay Bulletin',
@@ -32,6 +32,16 @@ class BarangayBulletinApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: seed),
         scaffoldBackgroundColor: const Color(0xFFF7F9F8),
         appBarTheme: const AppBarTheme(centerTitle: false),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFFE5E7EB),
+          foregroundColor: Colors.black,
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          indicatorColor: const Color(0xFFD1D5DB),
+          labelTextStyle: WidgetStateProperty.all(
+            const TextStyle(color: Color(0xFF374151)),
+          ),
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
         ),
@@ -126,10 +136,7 @@ class _HomeShellState extends State<HomeShell> {
 }
 
 class _TabNavigator extends StatelessWidget {
-  const _TabNavigator({
-    required this.navigatorKey,
-    required this.child,
-  });
+  const _TabNavigator({required this.navigatorKey, required this.child});
 
   final GlobalKey<NavigatorState> navigatorKey;
   final Widget child;

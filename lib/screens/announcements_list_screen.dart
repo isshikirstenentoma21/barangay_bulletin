@@ -189,6 +189,10 @@ class _FilterBar extends StatelessWidget {
           return ChoiceChip(
             label: Text(item),
             selected: value == item,
+            backgroundColor: const Color(0xFFF3F4F6),
+            selectedColor: const Color(0xFFD1D5DB),
+            side: const BorderSide(color: Color(0xFF9CA3AF)),
+            checkmarkColor: Colors.black,
             onSelected: (_) => onChanged(item),
           );
         },
@@ -218,7 +222,7 @@ class _EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 56, color: Theme.of(context).colorScheme.primary),
+            Icon(icon, size: 56, color: const Color(0xFF4B5563)),
             const SizedBox(height: 16),
             Text(title, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 8),
